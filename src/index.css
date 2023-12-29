@@ -14,3 +14,12 @@
     src: url('/fonts/RedHatDisplay-Italic-VariableFont_wght.ttf') format('truetype');
     font-style: italic;
 }
+
+h1 {
+    @apply text-3xl;
+    @apply font-semibold;
+}
+
+li {
+    @apply list-none;
+}

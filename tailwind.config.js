@@ -9,9 +9,9 @@ export default {
       colors: {
         black: '#010909',
         white: '#ffffff',
-        primary: '#d8ca28',
-        secondary: '#1c41e3',
-        accent: '#6453ea',
+        primary: '#0000C5',
+        secondary: '#0062B8',
+        accent: '#00B7D3',
         positive: '#00c853',
         warning: '#ffc107',
         negative: '#ff3d00',
