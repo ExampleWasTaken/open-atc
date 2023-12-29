@@ -2,14 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+/* In case you see an error for src: please ignore it */
 @font-face {
     font-family: RedHat;
-    src: url('/public/fonts/RedHatDisplay-VariableFont_wght.ttf') format('truetype');
+    src: url('/fonts/RedHatDisplay-VariableFont_wght.ttf') format('truetype');
     font-style: normal;
 }
 
 @font-face {
     font-family: RedHat;
-    src: url('/public/fonts/RedHatDisplay-Italic-VariableFont_wght.ttf') format('truetype');
+    src: url('/fonts/RedHatDisplay-Italic-VariableFont_wght.ttf') format('truetype');
     font-style: italic;
 }
