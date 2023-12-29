@@ -1,3 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+    font-family: RedHat;
+    src: url('/public/fonts/RedHatDisplay-VariableFont_wght.ttf') format('truetype');
+    font-style: normal;
+}
+
+@font-face {
+    font-family: RedHat;
+    src: url('/public/fonts/RedHatDisplay-Italic-VariableFont_wght.ttf') format('truetype');
+    font-style: italic;
+}

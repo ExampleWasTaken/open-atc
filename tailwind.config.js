@@ -3,6 +3,9 @@ export default {
   content: ['./index.html', './src/**/*.{ts,tsx,js,jsx}'],
   theme: {
     extend: {
+      fontFamily: {
+        'sans': ['RedHat', 'sans-serif']
+      },
       colors: {
         black: '#010909',
         white: '#ffffff',
