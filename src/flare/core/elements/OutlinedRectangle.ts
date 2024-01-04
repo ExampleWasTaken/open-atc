@@ -1,7 +1,16 @@
+import { Rectangular } from './Rectangular.ts';
 import { Vector3D } from '../geometry/Vector3D.ts';
-import { CanvasElement } from './CanvasElement.ts';
 
-export class Rectangle implements CanvasElement {
+interface Config {
+  color: string;
+  lineWidth: number;
+}
+
+/**
+ * Example implementation used for testing purposes.
+ */
+export class OutlinedRectangle implements Rectangular {
+  private readonly id: string;
   private location: Vector3D;
   private width: number;
   private height: number;
@@ -9,13 +18,36 @@ export class Rectangle implements CanvasElement {
   private draggable: boolean;
   private selectable: boolean;
 
-  constructor(location: Vector3D, width: number, height: number, draggable = false, selectable = false) {
+  private config: Config;
+
+  constructor(
+    id: string,
+    location: Vector3D,
+    width: number,
+    height: number,
+    config: Config,
+    draggable = false,
+    selectable = false
+  ) {
+    this.id = id;
     this.location = location;
     this.width = width;
     this.height = height;
 
     this.draggable = draggable;
     this.selectable = selectable;
+    this.config = config;
+  }
+
+  draw(ctx: CanvasRenderingContext2D): void {
+    ctx.beginPath();
+    ctx.strokeStyle = this.config.color;
+    ctx.lineWidth = this.config.lineWidth;
+    ctx.strokeRect(this.location.getX(), this.location.getY(), this.width, this.height);
+  }
+
+  getId(): string {
+    return this.id;
   }
 
   getLocation(): Vector3D {
