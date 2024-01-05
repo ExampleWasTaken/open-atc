@@ -42,6 +42,7 @@ export const Renderer = () => {
         assignedAltitude: 5000,
         heading: 180,
         assignedHeading: 180,
+        procedure: 'LENGU1A',
         speed: 250,
         assignedSpeed: 250,
       },

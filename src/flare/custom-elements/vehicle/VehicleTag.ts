@@ -1,38 +1,40 @@
 import { Rectangular } from '../../core/elements/Rectangular.ts';
 import { Vector3D } from '../../core/geometry/Vector3D.ts';
 
-interface Config {
-  content: string[];
-  lineHeight: number;
-}
-
 export class VehicleTag implements Rectangular {
   private readonly id: string;
   private location: Vector3D;
   private width: number;
   private height: number;
-  private config: Config;
+  private content: string[];
   private draggable: boolean;
   private selectable: boolean;
+
+  private static LINE_HEIGHT;
+
+  static {
+    this.LINE_HEIGHT = 15;
+  }
 
   constructor(
     id: string,
     location: Vector3D,
-    width: number,
-    height: number,
-    config: Config,
+    minWidth: number,
+    minHeight: number,
+    content: string[],
     draggable = false,
     selectable = false
   ) {
     this.id = id;
     this.location = location;
-    this.width = width;
-    this.height = height;
-    this.config = config;
+    this.width = minWidth;
+    this.height = minHeight;
+    this.content = content;
     this.draggable = draggable;
     this.selectable = selectable;
 
-    console.log(this.config.content);
+    this.width = minWidth;
+    this.height = minHeight;
   }
 
   draw(ctx: CanvasRenderingContext2D): void {
@@ -41,12 +43,12 @@ export class VehicleTag implements Rectangular {
     this.drawText(ctx);
   }
 
-  getConfig(): Config {
-    return this.config;
+  getContent(): string[] {
+    return this.content;
   }
 
-  setConfig(config: Config): void {
-    this.config = config;
+  setContent(content: string[]): void {
+    this.content = content;
   }
 
   getHeight(): number {
@@ -94,6 +96,7 @@ export class VehicleTag implements Rectangular {
   }
 
   private drawBackground(ctx: CanvasRenderingContext2D): void {
+    ctx.beginPath();
     ctx.fillStyle = '#000';
     ctx.fillRect(this.location.getX(), this.location.getY(), this.width, this.height);
 
@@ -101,6 +104,7 @@ export class VehicleTag implements Rectangular {
   }
 
   private drawOutline(ctx: CanvasRenderingContext2D): void {
+    ctx.beginPath();
     ctx.lineWidth = 2;
     ctx.strokeStyle = '#007bff';
     ctx.strokeRect(this.location.getX() - 1, this.location.getY() - 1, this.width, this.height);
@@ -113,11 +117,14 @@ export class VehicleTag implements Rectangular {
     ctx.beginPath();
     ctx.fillStyle = '#fff';
     ctx.textBaseline = 'top';
+    ctx.font = '15px sans-serif';
 
-    for (let i = 0; i < this.config.content.length; i++) {
-      ctx.fillText(this.config.content[i], this.location.getX(), this.location.getY() + this.config.lineHeight * i);
+    for (let i = 0; i < this.content.length; i++) {
+      ctx.fillText(this.content[i], this.location.getX(), this.location.getY() + VehicleTag.LINE_HEIGHT * i);
     }
 
     ctx.fillStyle = '#fff';
+    ctx.textBaseline = 'middle';
+    ctx.font = '10px sans-serif';
   }
 }

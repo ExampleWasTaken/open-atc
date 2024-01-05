@@ -34,17 +34,14 @@ export class Vehicle implements CanvasElement {
   constructor(id: string, data: Data, location: Vector3D) {
     this.id = id;
     this.blip = new VehicleBlip(id, location, 5, 5);
-    this.tag = new VehicleTag(id, this.getTagPosition(location), TAG_WIDTH, TAG_HEIGHT, {
-      content: [
-        data.callsign,
-        `${data.altitude} ${data.selectedAltitude} ${
-          data.verticalSpeed < 0 ? 'v' : data.verticalSpeed === 0 ? '=' : '^'
-        } ${data.assignedAltitude}`,
-        `${data.heading} ${data.assignedHeading} ${data.procedure && data.procedure}`,
-        `${data.speed} ${data.assignedSpeed}`,
-      ],
-      lineHeight: 12,
-    });
+    this.tag = new VehicleTag(id, this.getTagPosition(location), TAG_WIDTH, TAG_HEIGHT, [
+      data.callsign,
+      `${data.altitude} ${data.selectedAltitude} ${
+        data.verticalSpeed < 0 ? 'v' : data.verticalSpeed === 0 ? '=' : '^'
+      } ${data.assignedAltitude}`,
+      `${data.heading} ${data.assignedHeading} ${data.procedure || ''}`,
+      `${data.speed} ${data.assignedSpeed}`,
+    ]);
     this.tagLine = new TagLine(id, this.blip, this.tag);
 
     this.location = location;

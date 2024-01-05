@@ -45,7 +45,6 @@ export class Flare {
   }
 
   private render(): void {
-    console.log('[FLARE] Rendering...');
     this.canvasManager.drawElements();
 
     if (this.running) {
