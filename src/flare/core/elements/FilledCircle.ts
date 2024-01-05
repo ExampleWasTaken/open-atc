@@ -32,6 +32,8 @@ export class FilledCircle implements Circular {
     ctx.fillStyle = this.config.color;
     ctx.arc(this.location.getX(), this.location.getY(), this.radius, 0, Math.PI * 2);
     ctx.fill();
+
+    ctx.fillStyle = '';
   }
 
   getRadius(): number {
