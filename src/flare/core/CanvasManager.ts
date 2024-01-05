@@ -13,6 +13,10 @@ export class CanvasManager {
     }
     this.ctx = ctx;
     this.elements = [];
+
+    this.formatCanvas();
+
+    window.addEventListener('resize', () => this.formatCanvas());
   }
 
   drawElements(): void {
@@ -48,5 +52,13 @@ export class CanvasManager {
 
   private clear(): void {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+  }
+
+  private formatCanvas(): void {
+    this.canvas.style.width = '100%';
+    this.canvas.style.height = '100%';
+    this.canvas.width = this.canvas.offsetWidth * window.devicePixelRatio;
+    this.canvas.height = this.canvas.offsetHeight * window.devicePixelRatio;
+    this.ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
   }
 }
