@@ -44,6 +44,9 @@ export class OutlinedRectangle implements Rectangular {
     ctx.strokeStyle = this.config.color;
     ctx.lineWidth = this.config.lineWidth;
     ctx.strokeRect(this.location.getX(), this.location.getY(), this.width, this.height);
+
+    ctx.strokeStyle = '';
+    ctx.lineWidth = 1;
   }
 
   getId(): string {

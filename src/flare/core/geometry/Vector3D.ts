@@ -43,6 +43,19 @@ export class Vector3D implements Vector {
     return new Vector3D(x, y, z);
   }
 
+  normalize(): Vector3D {
+    const absX = Math.abs(this.x);
+    const absY = Math.abs(this.y);
+    const absZ = Math.abs(this.z);
+
+    // Avoid division by zero
+    const newX = absX === 0 ? 0 : this.x / absX;
+    const newY = absY === 0 ? 0 : this.y / absY;
+    const newZ = absZ === 0 ? 0 : this.z / absZ;
+
+    return new Vector3D(newX, newY, newZ);
+  }
+
   toString(): string {
     return `{${this.x} | ${this.y} | ${this.z}}`;
   }
