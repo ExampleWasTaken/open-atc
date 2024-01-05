@@ -29,7 +29,7 @@ export class Vehicle implements CanvasElement {
   private location: Vector3D;
 
   private draggable: boolean;
-  private selectable: boolean;
+  private selected: boolean;
 
   constructor(id: string, data: Data, location: Vector3D) {
     this.id = id;
@@ -46,7 +46,7 @@ export class Vehicle implements CanvasElement {
 
     this.location = location;
     this.draggable = false;
-    this.selectable = false;
+    this.selected = false;
   }
 
   draw(ctx: CanvasRenderingContext2D): void {
@@ -67,10 +67,6 @@ export class Vehicle implements CanvasElement {
     return this.draggable;
   }
 
-  isSelectable(): boolean {
-    return this.selectable;
-  }
-
   setDraggable(draggable: boolean): void {
     this.draggable = draggable;
   }
@@ -79,8 +75,21 @@ export class Vehicle implements CanvasElement {
     this.location = location;
   }
 
-  setSelectable(selectable: boolean): void {
-    this.selectable = selectable;
+  isSelected(): boolean {
+    return this.selected;
+  }
+
+  setSelected(selected: boolean) {
+    this.selected = selected;
+    this.tag.setSelected(selected);
+  }
+
+  getHeight(): number {
+    return this.tag.getHeight();
+  }
+
+  getWidth(): number {
+    return this.tag.getWidth();
   }
 
   private getTagPosition(blipPosition: Vector3D): Vector3D {

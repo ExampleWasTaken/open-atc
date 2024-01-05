@@ -16,26 +16,16 @@ export class OutlinedRectangle implements Rectangular {
   private height: number;
 
   private draggable: boolean;
-  private selectable: boolean;
 
   private config: Config;
 
-  constructor(
-    id: string,
-    location: Vector3D,
-    width: number,
-    height: number,
-    config: Config,
-    draggable = false,
-    selectable = false
-  ) {
+  constructor(id: string, location: Vector3D, width: number, height: number, config: Config, draggable = false) {
     this.id = id;
     this.location = location;
     this.width = width;
     this.height = height;
 
     this.draggable = draggable;
-    this.selectable = selectable;
     this.config = config;
   }
 
@@ -67,14 +57,6 @@ export class OutlinedRectangle implements Rectangular {
 
   setDraggable(draggable: boolean): void {
     this.draggable = draggable;
-  }
-
-  isSelectable(): boolean {
-    return this.selectable;
-  }
-
-  setSelectable(selectable: boolean): void {
-    this.selectable = selectable;
   }
 
   getWidth(): number {

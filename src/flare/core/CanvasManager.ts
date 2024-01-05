@@ -1,9 +1,13 @@
 import { CanvasElement } from './elements/CanvasElement.ts';
+import { InteractionManager } from './interaction/InteractionManager.ts';
 
 export class CanvasManager {
   private readonly canvas: HTMLCanvasElement;
   private readonly ctx: CanvasRenderingContext2D;
+
   private elements: CanvasElement[];
+
+  private interactionManager: InteractionManager;
 
   constructor(canvas: HTMLCanvasElement) {
     this.canvas = canvas;
@@ -13,6 +17,9 @@ export class CanvasManager {
     }
     this.ctx = ctx;
     this.elements = [];
+
+    this.interactionManager = new InteractionManager(this);
+    this.interactionManager.registerListeners();
 
     this.formatCanvas();
 
@@ -44,6 +51,10 @@ export class CanvasManager {
 
   getElements(): CanvasElement[] {
     return this.elements;
+  }
+
+  getCanvas(): HTMLCanvasElement {
+    return this.canvas;
   }
 
   private sortElementsByZPosition(): CanvasElement[] {

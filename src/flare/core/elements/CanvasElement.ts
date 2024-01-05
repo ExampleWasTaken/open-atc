@@ -5,8 +5,10 @@ export interface CanvasElement {
   getId(): string;
   isDraggable(): boolean;
   setDraggable(draggable: boolean): void;
-  isSelectable(): boolean;
-  setSelectable(selectable: boolean): void;
+  isSelected(): boolean;
+  setSelected(selected: boolean): void;
   getLocation(): Vector3D;
   setLocation(location: Vector3D): void;
+  getWidth(): number;
+  getHeight(): number;
 }

@@ -14,17 +14,15 @@ export class FilledCircle implements Circular {
   private location: Vector3D;
 
   private draggable: boolean;
-  private selectable: boolean;
 
   private config: Config;
 
-  constructor(id: string, radius: number, location: Vector3D, config: Config, draggable = false, selectable = false) {
+  constructor(id: string, radius: number, location: Vector3D, config: Config, draggable = false) {
     this.id = id;
     this.radius = radius;
     this.location = location;
     this.config = config;
     this.draggable = draggable;
-    this.selectable = selectable;
   }
 
   draw(ctx: CanvasRenderingContext2D): void {
@@ -51,16 +49,19 @@ export class FilledCircle implements Circular {
   setDraggable(draggable: boolean): void {
     this.draggable = draggable;
   }
-  isSelectable(): boolean {
-    return this.selectable;
-  }
-  setSelectable(selectable: boolean): void {
-    this.selectable = selectable;
-  }
+
   getLocation(): Vector3D {
     return this.location;
   }
   setLocation(location: Vector3D): void {
     this.location = location;
+  }
+
+  getHeight(): number {
+    return this.radius * 2;
+  }
+
+  getWidth(): number {
+    return this.radius * 2;
   }
 }

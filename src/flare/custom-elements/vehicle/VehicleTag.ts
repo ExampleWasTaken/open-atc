@@ -8,7 +8,7 @@ export class VehicleTag implements Rectangular {
   private height: number;
   private content: string[];
   private draggable: boolean;
-  private selectable: boolean;
+  private selected: boolean;
 
   private static LINE_HEIGHT;
 
@@ -22,8 +22,7 @@ export class VehicleTag implements Rectangular {
     minWidth: number,
     minHeight: number,
     content: string[],
-    draggable = false,
-    selectable = false
+    draggable = false
   ) {
     this.id = id;
     this.location = location;
@@ -31,15 +30,17 @@ export class VehicleTag implements Rectangular {
     this.height = minHeight;
     this.content = content;
     this.draggable = draggable;
-    this.selectable = selectable;
+    this.selected = false;
 
     this.width = minWidth;
     this.height = minHeight;
   }
 
   draw(ctx: CanvasRenderingContext2D): void {
-    this.drawBackground(ctx);
-    this.drawOutline(ctx);
+    if (this.selected) {
+      this.drawBackground(ctx);
+      this.drawOutline(ctx);
+    }
     this.drawText(ctx);
   }
 
@@ -71,8 +72,12 @@ export class VehicleTag implements Rectangular {
     return this.draggable;
   }
 
-  isSelectable(): boolean {
-    return this.selectable;
+  isSelected(): boolean {
+    return this.selected;
+  }
+
+  setSelected(selected: boolean) {
+    this.selected = selected;
   }
 
   setDraggable(draggable: boolean): void {
@@ -85,10 +90,6 @@ export class VehicleTag implements Rectangular {
 
   setLocation(location: Vector3D): void {
     this.location = location;
-  }
-
-  setSelectable(selectable: boolean): void {
-    this.selectable = selectable;
   }
 
   setWidth(width: number): void {
