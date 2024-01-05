@@ -12,8 +12,6 @@ export class Flare {
     this.canvasManager = new CanvasManager(this.canvas);
 
     this.running = false;
-
-    this.initCanvas();
   }
 
   startRender(): void {
@@ -53,13 +51,5 @@ export class Flare {
     if (this.running) {
       requestAnimationFrame(() => this.render());
     }
-  }
-
-  private initCanvas(): void {
-    console.log('[FLARE] Initializing canvas...');
-    this.canvas.style.width = '100%';
-    this.canvas.style.height = '100%';
-    this.canvas.width = this.canvas.offsetWidth;
-    this.canvas.height = this.canvas.offsetHeight;
   }
 }
